@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <title>Botiga de Fruites 🍉</title>
+  <!-- Crida a l’arxiu d’estils -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Crida al fitxer JS -->
+  <script src="js/scripts.js" defer></script>
+</head>
+<body>
+
+
+  <p>Diners Inicials: <strong id="diners">????</strong> €</p>
+  
+  <div id="llistat"></div>
+     <!-- Creem el formulari -->
+  <form id="formulari">
+    <label>Fruita:</label>
+    <select id="producte">
+        <option value="0">Boligraf 🖊️(1.2€)</option>
+        <option value="1">Llibreta 📒 (2.5€)</option>
+        <option value="2">Retoladors 🖍️(5.0€)</option>
+    </select>
+    <label>Unitats:</label>
+    <input type="number" id="unitats" min="1" value="1">
+    <button type="submit">Comprar</button>
+  </form>
+
+  <div id="resultats"></div>
+
+
+</body>
+</html>
