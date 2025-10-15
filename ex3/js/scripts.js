@@ -1,65 +1,59 @@
-document.addEventListener("DOMContentLoaded", function() {
-    // dincers inicials
-    diners = 50;
-    
+let comptatge = {};
 
-    document.getElementById("diners").textContent = diners;
-    
+function analitzaDNA() {
+  // Convertim a majúscules i traiem espais
+  const dna = document.getElementById("dnaInput").value
+    .toUpperCase()
+    .replace(/\s+/g, "");
 
-    resultat = "";
+  const missatge = document.getElementById("missatge");
+  const resultat = document.getElementById("resultat");
+  const dnaFormat = document.getElementById("dnaFormat");
 
-    // creeem la llista
-    const productes = [
-      {name: "Boligraf 🖊️", price: 1.2},
-      {name: "Llibreta 📒", price: 2.5},
-      {name: "Retoladors 🖍️", price: 5.0},
-    ];
+  missatge.innerHTML = "";
+  resultat.innerHTML = "";
+  dnaFormat.innerHTML = "";
 
+  // Verificar cadena vàlida
+  if (!/^[ACGTU]+$/.test(dna)) {
+    missatge.innerHTML = "<div class='error'> Cadena  buida o amb carácters icorrectes! Només es permeten A, C, G i T.</div>";
+    return;
+  }
 
-    productes_str = "";
+  // Inicialitzar recompte
+  let numU= 0;
 
-    
-    
-
-    
-
-
-      
-    // Cuan es doni la botó de comprar
-
-    document.addEventListener("submit", function() {
-      
-
-      event.preventDefault(); 
-
-        // agafem les dades
-      producte = document.getElementById("producte").value;
-
-      unitats = document.getElementById("unitats").value;
-        // Calculem el preu total
-
-      preuTotal = productes[producte].price * unitats;
-      // Condició per si te diners
-
-      if (diners >= preuTotal) {
-        // SI te diners printem el resultat
-        resultat = `
-          <p><strong> Has comprat ${unitats} ${productes[producte].name}  per ${preuTotal} €</strong></p>`;
-        
-
-        document.getElementById("resultats").innerHTML = resultat;
-
-        // modifiquem els diners
-        diners = (diners - preuTotal).toFixed(2);
-
-        // modifiquem la variable
-        document.getElementById("diners").textContent = diners;
-
-      } else {
-        //si no hi ha diners printem aquest resultat
-        resultat = `<p><strong>No tens diners suficients</strong></p`;
-        document.getElementById("resultats").innerHTML = resultat;
-      }
-    });
-});
+  // Recorrem la cadena
+  for (let i = 0; i < dna.length; i++) {
+    const base = dna[i];
+    if (base === "U"){
+        numU++
+    }
+   
+  }
+  
  
+  // Calculaem la polindroma
+  const longitud = dna.length;
+  let polindroma = false;
+  let cadenaPol =""
+  for(let i = longitud -1; i>= 0; i--){
+        cadenaPol += dna[i];
+        
+  }
+  if(cadenaPol == dna){
+    polindroma = true;
+  }
+  // ho comprobem
+  resultat.innerHTML = `
+    <p><b>Longitud:</b> ${longitud}</p>
+    <p><b>Hi ha ${numU}</b> U</p>
+    <p><b>La cadena es políndroma = ${polindroma}</b></p>
+  `;
+  
+
+
+    
+    
+  
+}
